@@ -4,10 +4,29 @@ namespace Perseverance.Domain.Entities
 {
     public class Robot
     {
+        /// <summary>
+        /// Robot current position
+        /// </summary>
         public Coordinate CurrentPosition { get; private set; }
+
+        /// <summary>
+        /// Robot current camera direction
+        /// </summary>
         public Direction Direction { get; private set; }
+
+        /// <summary>
+        /// Robot is lost
+        /// </summary>
         public bool IsLost { get; private set; }
+
+        /// <summary>
+        /// Set of commands in format LRF
+        /// </summary>
         public string SetOfCommands { get; private set; }
+
+        /// <summary>
+        /// Object of type <see cref="Mars"/> that represent the world
+        /// </summary>
         public Mars Mars { get; private set; }
 
 
@@ -19,6 +38,9 @@ namespace Perseverance.Domain.Entities
             SetOfCommands = setOfCommands;
         }
 
+        /// <summary>
+        /// Execute the set of commands
+        /// </summary>
         public void ExecuteComand()
         {
             foreach (char comand in SetOfCommands)
@@ -47,6 +69,9 @@ namespace Perseverance.Domain.Entities
             }
         }
 
+        /// <summary>
+        /// Turn direction to left side
+        /// </summary>
         private void TurnLeft()
         {
             switch (Direction)
@@ -69,6 +94,9 @@ namespace Perseverance.Domain.Entities
             }
         }
 
+        /// <summary>
+        /// Turn direction to right side
+        /// </summary>
         private void TurnRight()
         {
             switch (Direction)
@@ -91,6 +119,9 @@ namespace Perseverance.Domain.Entities
             }
         }
 
+        /// <summary>
+        /// Move forward the robot
+        /// </summary>
         private void MoveForward()
         {
             Coordinate probablyNextPosition = SimuleNextPosition();
@@ -109,6 +140,10 @@ namespace Perseverance.Domain.Entities
             }
         }
 
+        /// <summary>
+        /// Recreate a posible new position to the robot
+        /// </summary>
+        /// <returns>return a new position</returns>
         private Coordinate SimuleNextPosition()
         {
             Coordinate coordinate;
@@ -135,6 +170,11 @@ namespace Perseverance.Domain.Entities
             return coordinate;
         }
 
+        /// <summary>
+        /// Check if the posible new position is available
+        /// </summary>
+        /// <param name="coordinate">Object of type <see cref="Coordinate"/></param>
+        /// <returns>True if the position is out of the mars limit, false in the other case</returns>
         private bool RobotIsOut(Coordinate coordinate)
         {
             return coordinate.X < 0 || coordinate.Y < 0
