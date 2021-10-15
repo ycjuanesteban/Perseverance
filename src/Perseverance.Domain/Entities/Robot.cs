@@ -29,7 +29,6 @@ namespace Perseverance.Domain.Entities
         /// </summary>
         public Mars Mars { get; private set; }
 
-
         public Robot(Coordinate initialCoordinate, Direction direction, Mars mars)
         {
             CurrentPosition = initialCoordinate;

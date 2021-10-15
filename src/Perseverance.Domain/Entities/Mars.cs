@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Perseverance.Domain.Entities
 {
@@ -32,7 +33,7 @@ namespace Perseverance.Domain.Entities
         /// <param name="coordinate"><see cref="Coordinate"/></param>
         public void AddPointToScente(Coordinate coordinate)
         {
-            if (!_scentPoints.Contains(coordinate))
+            if (!_scentPoints.Any(c => c.X == coordinate.X && c.Y == coordinate.Y))
                 _scentPoints.Add(coordinate);
         }
 

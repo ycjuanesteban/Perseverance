@@ -53,6 +53,7 @@ namespace Perseverance.Infrastructure.File.FileHandler
 
             StreamReader r = new StreamReader(fullPath);
             string jsonString = r.ReadToEnd();
+            r.Close();
 
             return JsonConvert.DeserializeObject<T>(jsonString);
         }
