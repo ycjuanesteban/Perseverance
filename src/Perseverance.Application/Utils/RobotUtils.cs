@@ -1,5 +1,6 @@
 ﻿using Perseverance.Domain.Entities;
 using Perseverance.Domain.Enums;
+using Perseverance.Infrastructure.File.FileHandler;
 using System;
 using System.Collections.Generic;
 
@@ -18,6 +19,8 @@ namespace Perseverance.Application.Utils
         /// </summary>
         private Mars _mars;
 
+        private JSonHandler _jSonHandler;
+
         public RobotUtils(string userInstructions)
         {
             if (string.IsNullOrEmpty(userInstructions))
@@ -26,6 +29,8 @@ namespace Perseverance.Application.Utils
             }
 
             _instructionsInLines = userInstructions.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            _jSonHandler = new JSonHandler();
         }
 
         /// <summary>
@@ -40,6 +45,14 @@ namespace Perseverance.Application.Utils
             int yLimit = Convert.ToInt32(wordLimits[1]);
 
             _mars = new Mars(xLimit, yLimit);
+
+            string fileName = $"{xLimit}{yLimit}";
+            if (_jSonHandler.FileExist(fileName))
+            {
+                List<Coordinate> scentCoordinates = _jSonHandler.ReadFileData<List<Coordinate>>(fileName);
+                _mars.SetPreexistentScents(scentCoordinates);
+            }
+
             return _mars;
         }
 
@@ -62,7 +75,7 @@ namespace Perseverance.Application.Utils
 
                 if (i % 2 == 0)
                 {
-                    if(_instructionsInLines[i].Length > 100)
+                    if (_instructionsInLines[i].Length > 100)
                     {
                         throw new Exception("One of the instructions is bigger than 100 characters");
                     }
@@ -85,6 +98,15 @@ namespace Perseverance.Application.Utils
             }
 
             return robots;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="mars"></param>
+        public void SaveRobotStatus(Mars mars)
+        {
+            _jSonHandler.WriteFile($"{mars.XLimit}{mars.YLimit}", mars.GetFinalScents());
         }
 
         /// <summary>

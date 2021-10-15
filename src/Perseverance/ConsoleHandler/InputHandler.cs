@@ -30,11 +30,11 @@ namespace Perseverance.ConsoleHandlers
                 $"Add world size in format X Y{Environment.NewLine}" +
                 $"  - Example: 5 3{Environment.NewLine}" +
                 $"Add initial robot coordinates with uppercase letter{Environment.NewLine}" +
-                $"  - 3 2 N{Environment.NewLine}" +
+                $"  - Example: 3 2 N{Environment.NewLine}" +
                 $"Add instructions in a line (100 characters is the limit){Environment.NewLine}" +
-                $"  - RFLRFLRFL{Environment.NewLine}{Environment.NewLine}" +
+                $"  - Example: RFLRFLRFL{Environment.NewLine}{Environment.NewLine}" +
                 $"To finish, press Ctrl + Z and intro{Environment.NewLine}" +
-                $"----------------------------------------------------------------------------------{Environment.NewLine}");
+                $"--------------------------------------------------------{Environment.NewLine}");
         }
     }
 }

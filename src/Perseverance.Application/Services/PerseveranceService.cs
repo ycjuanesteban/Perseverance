@@ -44,6 +44,11 @@ namespace Perseverance.Application.Services
             {
                 item.ExecuteComand();
             }
+
+            if (_mars.GetFinalScents().Count > 0)
+            {
+                _robotUtils.SaveRobotStatus(_mars);
+            }
         }
 
         /// <summary>

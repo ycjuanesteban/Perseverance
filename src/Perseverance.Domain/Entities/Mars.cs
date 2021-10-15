@@ -7,23 +7,23 @@ namespace Perseverance.Domain.Entities
         /// <summary>
         /// Max X size
         /// </summary>
-        public int XLimit { get; set; }
+        public int XLimit { get; private set; }
 
         /// <summary>
         /// Max Y size
         /// </summary>
-        public int YLimit { get; set; }
+        public int YLimit { get; private set; }
 
         /// <summary>
         /// List of scente points
         /// </summary>
-        private List<Coordinate> _scentePoints { get; set; }
+        private List<Coordinate> _scentPoints { get; set; }
 
         public Mars(int xLimit, int yLimit)
         {
             XLimit = xLimit;
             YLimit = yLimit;
-            _scentePoints = new List<Coordinate>();
+            _scentPoints = new List<Coordinate>();
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Perseverance.Domain.Entities
         /// <param name="coordinate"><see cref="Coordinate"/></param>
         public void AddPointToScente(Coordinate coordinate)
         {
-            if (!_scentePoints.Contains(coordinate))
-                _scentePoints.Add(coordinate);
+            if (!_scentPoints.Contains(coordinate))
+                _scentPoints.Add(coordinate);
         }
 
         /// <summary>
@@ -43,7 +43,25 @@ namespace Perseverance.Domain.Entities
         /// <returns>True if position exist, false in the other case</returns>
         public bool IsScenteThisPoint(Coordinate coordinate)
         {
-            return _scentePoints.Contains(coordinate);
+            return _scentPoints.Contains(coordinate);
+        }
+
+        /// <summary>
+        /// Set the pre existents scents
+        /// </summary>
+        /// <param name="coordinates">List of type <see cref="Coordinate"/></param>
+        public void SetPreexistentScents(List<Coordinate> coordinates)
+        {
+            _scentPoints = coordinates;
+        }
+
+        /// <summary>
+        /// Return the list of scent points
+        /// </summary>
+        /// <returns></returns>
+        public List<Coordinate> GetFinalScents()
+        {
+            return _scentPoints;
         }
     }
 }
