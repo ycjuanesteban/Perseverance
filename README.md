@@ -42,7 +42,7 @@ LLFFFRFLFL
 ```
 
 
-![ConsoleInput](./docs/images/input.png)
+![ConsoleInput](./docs/images/Input.png)
 
 ### Output
 
@@ -50,4 +50,4 @@ The basic output is a list of the last positions of each rover.
 
 When the rover cross the edge of the planet and "lost" the result will be the last knowed possition and the word "LOST"
 
-![ConsoleOutput](./docs/images/output.png)
+![ConsoleOutput](./docs/images/Output.png)
