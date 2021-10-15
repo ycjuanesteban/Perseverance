@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Perseverance.ConsoleHandlers;
+using System;
 
 namespace Perseverance
 {
@@ -7,6 +8,7 @@ namespace Perseverance
         static void Main(string[] args)
         {
             Console.WriteLine("Perseverance");
+            InputHandler.GetInstructions();
         }
     }
 }
