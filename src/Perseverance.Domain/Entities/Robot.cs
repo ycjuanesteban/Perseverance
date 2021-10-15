@@ -30,12 +30,12 @@ namespace Perseverance.Domain.Entities
         public Mars Mars { get; private set; }
 
 
-        public Robot(Coordinate initialCoordinate, Direction direction, string setOfCommands, Mars mars)
+        public Robot(Coordinate initialCoordinate, Direction direction, Mars mars)
         {
             CurrentPosition = initialCoordinate;
             Direction = direction;
             Mars = mars;
-            SetOfCommands = setOfCommands;
+            //SetOfCommands = setOfCommands;
         }
 
         /// <summary>
@@ -67,6 +67,11 @@ namespace Perseverance.Domain.Entities
                     }
                 }
             }
+        }
+
+        public void SetCommands(string commands)
+        {
+            SetOfCommands = commands;
         }
 
         /// <summary>
@@ -151,16 +156,16 @@ namespace Perseverance.Domain.Entities
             switch (Direction)
             {
                 case Direction.N:
-                    coordinate = new Coordinate(CurrentPosition.X + 1, CurrentPosition.Y);
-                    break;
-                case Direction.S:
-                    coordinate = new Coordinate(CurrentPosition.X - 1, CurrentPosition.Y);
-                    break;
-                case Direction.E:
                     coordinate = new Coordinate(CurrentPosition.X, CurrentPosition.Y + 1);
                     break;
-                case Direction.W:
+                case Direction.S:
                     coordinate = new Coordinate(CurrentPosition.X, CurrentPosition.Y - 1);
+                    break;
+                case Direction.E:
+                    coordinate = new Coordinate(CurrentPosition.X + 1, CurrentPosition.Y);
+                    break;
+                case Direction.W:
+                    coordinate = new Coordinate(CurrentPosition.X - 1, CurrentPosition.Y);
                     break;
                 default:
                     coordinate = default;
@@ -181,5 +186,16 @@ namespace Perseverance.Domain.Entities
                     || Mars.XLimit < coordinate.X || Mars.YLimit < coordinate.Y;
         }
 
+        public override string ToString()
+        {
+            string result = $"{CurrentPosition.X} {CurrentPosition.Y} {Direction}";
+
+            if (IsLost)
+            {
+                result += " LOST";
+            }
+
+            return result;
+        }
     }
 }

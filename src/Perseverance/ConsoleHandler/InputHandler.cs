@@ -17,7 +17,7 @@ namespace Perseverance.ConsoleHandlers
             {
                 instructionLine = Console.ReadLine();
                 if (instructionLine != string.Empty)
-                    userInstructions.Append(instructionLine);
+                    userInstructions.Append(instructionLine + Environment.NewLine);
 
             } while (instructionLine != null);
 
@@ -33,7 +33,7 @@ namespace Perseverance.ConsoleHandlers
                 $"  - 3 2 N{Environment.NewLine}" +
                 $"Add instructions in a line (100 characters is the limit){Environment.NewLine}" +
                 $"  - RFLRFLRFL{Environment.NewLine}{Environment.NewLine}" +
-                $"To finish, press Ctrl + Z{Environment.NewLine}{Environment.NewLine}" +
+                $"To finish, press Ctrl + Z and intro{Environment.NewLine}" +
                 $"----------------------------------------------------------------------------------{Environment.NewLine}");
         }
     }

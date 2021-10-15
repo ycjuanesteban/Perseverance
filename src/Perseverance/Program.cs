@@ -1,4 +1,6 @@
-﻿using Perseverance.ConsoleHandlers;
+﻿using Perseverance.Application.Services;
+using Perseverance.ConsoleHandler;
+using Perseverance.ConsoleHandlers;
 using System;
 
 namespace Perseverance
@@ -8,7 +10,15 @@ namespace Perseverance
         static void Main(string[] args)
         {
             Console.WriteLine("Perseverance");
-            InputHandler.GetInstructions();
+            string fullUserInput = InputHandler.GetInstructions();
+
+            PerseveranceService perseveranceService = new PerseveranceService(fullUserInput);
+
+            perseveranceService.Execute();
+
+            string[] finalResult = perseveranceService.GetFinalResult();
+
+            OutputHandler.ShowResults(finalResult);
         }
     }
 }
