@@ -1,5 +1,7 @@
 # Perseverance - Code Challenge
 
+To see the full description of the problem, visit [the document](./docs/Martian_Robots_Updated.pdf)
+
 ## Architectural decisions
 
 - Layer division:
