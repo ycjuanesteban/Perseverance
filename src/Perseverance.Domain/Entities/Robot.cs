@@ -22,7 +22,7 @@ namespace Perseverance.Domain.Entities
         /// <summary>
         /// Set of commands in format LRF
         /// </summary>
-        public string SetOfCommands { get; private set; }
+        public string Commands { get; private set; }
 
         /// <summary>
         /// Object of type <see cref="Mars"/> that represent the world
@@ -40,9 +40,9 @@ namespace Perseverance.Domain.Entities
         /// <summary>
         /// Execute the set of commands
         /// </summary>
-        public void ExecuteComand()
+        public void ExecuteComands()
         {
-            foreach (char comand in SetOfCommands)
+            foreach (char comand in Commands)
             {
                 if (!IsLost)
                 {
@@ -68,9 +68,13 @@ namespace Perseverance.Domain.Entities
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="commands"></param>
         public void SetCommands(string commands)
         {
-            SetOfCommands = commands;
+            Commands = commands;
         }
 
         /// <summary>

@@ -33,8 +33,10 @@ namespace Perseverance.Domain.Entities
         /// <param name="coordinate"><see cref="Coordinate"/></param>
         public void AddPointToScente(Coordinate coordinate)
         {
-            if (!_scentPoints.Any(c => c.X == coordinate.X && c.Y == coordinate.Y))
+            if (!IsScenteThisPoint(coordinate))
+            {
                 _scentPoints.Add(coordinate);
+            }
         }
 
         /// <summary>
@@ -44,7 +46,7 @@ namespace Perseverance.Domain.Entities
         /// <returns>True if position exist, false in the other case</returns>
         public bool IsScenteThisPoint(Coordinate coordinate)
         {
-            return _scentPoints.Contains(coordinate);
+            return _scentPoints.Any(c => c.X == coordinate.X && c.Y == coordinate.Y);
         }
 
         /// <summary>

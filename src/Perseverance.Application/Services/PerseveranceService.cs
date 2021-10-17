@@ -42,7 +42,7 @@ namespace Perseverance.Application.Services
         {
             foreach (var item in _robots)
             {
-                item.ExecuteComand();
+                item.ExecuteComands();
             }
 
             if (_mars.GetFinalScents().Count > 0)
